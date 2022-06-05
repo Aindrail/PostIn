@@ -15,10 +15,20 @@ function PostBox() {
 
     const {data : session} = useSession();
     const [imageBoxOpen, setImageBoxOpen] = useState<boolean>(false);
-    const { register, setValue,handleSubmit, watch, formState: { errors } } = useForm<FormData>();
+    const { register,
+            setValue,
+            handleSubmit,
+            watch, 
+            formState: { errors } 
+           } = useForm<FormData>();
 
+  
+  const onSubmit = handleSubmit(async( FormData) => {
+    console.log(FormData);
+  });
   return (
-    <form className='bg-white p-2 border rounded-md border-gray-300'>
+    <form onSubmit={onSubmit} 
+       className='bg-white p-2 border rounded-md border-gray-300'>
         <div className='flex items-center space-x-3'>
             {/* Avatar */}
             <Avatar  />
@@ -65,11 +75,34 @@ function PostBox() {
                        </p>
                        <input 
                        className='m-2 flex-1 bg-blue-50 p-2 outline-none'
-                       {...register('postImage',{ required: true })}
+                       {...register('postImage')}
                        type="text" placeholder='Optional...' />
                     </div>
                    )} 
                 </div>
+
+                {/* Errors */}
+                {Object.keys(errors).length >0 && (
+                //    required true in register if false is handled here
+                   <div className='space-y-2 p-2 text-red-500'>
+                         {errors.postTitle?.type === 'required' && (
+                             <p>A Post Title is required</p>
+
+                         )} 
+                         {errors.postTitle?.type === 'required' && (
+                             <p>A Group name is required</p>
+
+                         )}  
+                    </div>
+
+                )}
+
+
+                {!!watch('postTitle') && (
+                <button type='submit' className='w-full rounded-full p-2 text-white bg-blue-400'>
+                    Post
+                </button>
+                )}
             </div>
         )}
     </form>
