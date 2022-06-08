@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       <PostBox />
 
-      <div className="flex justify-center">
+      <div className="flex ">
         <Feed />
         </div>
 
