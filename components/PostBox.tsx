@@ -8,6 +8,7 @@ import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutations'
 import client from '../apollo-client'
 import { GET_ALL_POSTS, GET_SUBREDDITS_BY_TOPIC } from '../graphql/queries'
 import toast from 'react-hot-toast'
+import { Jelly } from '@uiball/loaders'
 // import Subreddit from '../pages/group/[topic]'
 
 type FormData = {
@@ -21,7 +22,7 @@ type Props = {
 }
 
 function PostBox({subreddit}: Props) {
-  
+
   const { data: session } = useSession()
 
   const [addPost] = useMutation(ADD_POST,{
@@ -117,7 +118,10 @@ function PostBox({subreddit}: Props) {
       })
     }
   })
+    
+
   return (
+    
     <form
       onSubmit={onSubmit}
       className="rounded-md border border-gray-300 bg-white p-2"
