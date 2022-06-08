@@ -5,6 +5,7 @@ import {
   ChevronDownIcon,
   HomeIcon,
   SearchIcon,
+  ChevronUpIcon,
 } from '@heroicons/react/solid'
 import {
   BellIcon,
@@ -16,24 +17,36 @@ import {
   VideoCameraIcon,
 } from '@heroicons/react/outline'
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 function Header() {
   const { data: session } = useSession()
   return (
     <div className=" sticky top-0 z-50  flex bg-white px-4 py-2 shadow-sm items-center">
       <div className="relative h-10 w-20 flex-shrink-0    cursor-pointer">
+       <Link href="/">
         <Image
           objectFit="contain"
           src="https://play-lh.googleusercontent.com/ItxDn_WNq3QPvuXS1jaXwujqvRobrH-hpEqbDy1iCVx0b5Z5dv9ADyfd83Dn6cDsNbE"
           layout="fill"
         />
+        </Link>
       </div>
 
       <div className="mx-7 flex items-center xl:min-w-[300px]">
+      <Link href="/">
         <HomeIcon className="h-5 w-5" />
+        </Link>
+         {/* hidden in small screen but still visible in large screen */}
         <p className="ml-2 hidden flex-1 lg:inline">Home</p>
-        {/* hidden in small screen but still visible in large screen */}
-        <ChevronDownIcon className="h-5 w-5" />
+        
+       
+        {/* <ChevronUpIcon className="h-5 w-5 " /> */}
+      </div>
+      <div className="mr-7 flex item-center xl:min-w-[300px]">
+      <Link href="javascript:window.location.href=window.location.href">
+       <ChevronUpIcon className="h-5 w-5 " />
+        </Link>
       </div>
 
       <form className="flex flex-1 items-center space-x-2 rounded-lg border border-gray-200 bg-gray-100 px-3 py-1 ">
