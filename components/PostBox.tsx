@@ -8,6 +8,7 @@ import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutations'
 import client from '../apollo-client'
 import { GET_ALL_POSTS, GET_SUBREDDITS_BY_TOPIC } from '../graphql/queries'
 import toast from 'react-hot-toast'
+// import Subreddit from '../pages/group/[topic]'
 
 type FormData = {
   postTitle: string
@@ -15,13 +16,18 @@ type FormData = {
   postImage: string
   subreddit: string
 }
+type Props = {
+  subreddit?: string
+}
 
-function PostBox() {
+function PostBox({subreddit}: Props) {
+  
   const { data: session } = useSession()
 
   const [addPost] = useMutation(ADD_POST,{
     refetchQueries:[ GET_ALL_POSTS,'getPostList'],
   })
+
   const [addSubreddit] = useMutation(ADD_SUBREDDIT)
 
   const [imageBoxOpen, setImageBoxOpen] = useState<boolean>(false)
@@ -45,7 +51,7 @@ function PostBox() {
       } = await client.query({
         query: GET_SUBREDDITS_BY_TOPIC,
         variables: {
-          topic: formData.subreddit,
+          topic: subreddit || formData.subreddit,
         },
       })
       console.log(getSubredditListByTopic);
@@ -105,7 +111,7 @@ function PostBox() {
         id: notification,
       })
     } catch (error) {
-      console.log('hi', error)
+      console.log( error)
       toast.error('Whoops! Something went wrong!', {
         id: notification,
       })
@@ -125,7 +131,7 @@ function PostBox() {
           className="flex-1 rounded-md bg-gray-50 p-2 pl-5 outline-none"
           type="text"
           placeholder={
-            session ? 'Thinking of posting?? Here!!' : 'Login/SignIn to Post'
+            session ? subreddit ? `Create a post in group ${subreddit} `: 'Thinking of posting?? Here!!' : 'Login/SignIn to Post'
           }
         />
 
@@ -149,7 +155,8 @@ function PostBox() {
               placeholder="Text (optional)"
             />
           </div>
-          <div className="flex items-center px-2">
+          {!subreddit && (
+            <div className="flex items-center px-2">
             <p className="min-w-[90px]">Group</p>
             <input
               className="m-2 flex-1 bg-blue-50 p-2 outline-none"
@@ -158,7 +165,9 @@ function PostBox() {
               placeholder="for ex :- NextJs"
             />
           </div>
-          <div>
+          )}
+
+          
             {imageBoxOpen && (
               <div className="flex items-center px-2">
                 <p className="min-w-[90px]">Image URL :</p>
@@ -170,7 +179,7 @@ function PostBox() {
                 />
               </div>
             )}
-          </div>
+          
 
           {/* Errors */}
           {Object.keys(errors).length > 0 && (
