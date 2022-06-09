@@ -18,6 +18,7 @@ import toast from 'react-hot-toast'
 import { useMutation, useQuery } from '@apollo/client'
 import { GET_ALL_VOTES_BY_POST_ID } from '../graphql/queries'
 import { ADD_VOTE } from '../graphql/mutations'
+import {RWebShare} from 'react-web-share'
 
 type Props = {
   post: Post
@@ -83,7 +84,7 @@ return(
 
   return (
     
-    <Link href={`/post/${post.id}`}>
+     <Link href={`/post/${post.id}`}>
     <div className="flex cursor-pointer rounded-md border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">
       {/* Vote */}
       <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400 ">
@@ -118,10 +119,10 @@ return(
           <p className='mt-2 text-sm font-light'>{post.body}</p>
 
         </div>
-
+      
         {/* Image of the post */}
         <img className='w-full ' src={post.image} alt="" />
-
+        
         {/* footer of the post */}
         <div className='flex space-x-4 text-gray-400'>
           <div className='postButtons'>
@@ -139,7 +140,17 @@ return(
 
           </div>
           <div className='postButtons'>
+            <RWebShare
+               data={{
+                text: "Share or Copy link",
+                url: `/post/${post.id}`,
+                title: "Share this post",
+              }}
+              onClick={() => console.log('clicked')}
+              >
             <ShareIcon className='h-6 w-6' />
+            
+            </RWebShare>
             <p className='hidden sm:inline'>Share</p>
 
           </div>
@@ -159,7 +170,7 @@ return(
       </div>
      
     </div>
-   </Link>
+   </Link> 
   )
 }
 
