@@ -142,7 +142,7 @@ return(
           <div className='postButtons'>
             <RWebShare
                data={{
-                text: "Visit this post in PostIn using this link -",
+                text: "Visit this post in PostIn using the below link \n",
                 url: `/post/${post.id}`,
                 title: "Share this post",
               }}
