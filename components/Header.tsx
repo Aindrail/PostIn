@@ -53,7 +53,7 @@ function Header() {
         </Link>
       </div>
 
-      <form className="flex flex-1 items-center  rounded-lg border border-gray-200 bg-gray-100  lg: px-3 py-1 space-x-2 ">
+      <form className="flex flex-1 items-center  rounded-lg border border-gray-200 bg-gray-100 px-3 py-1 space-x-2 ">
         <SearchIcon className="h-6 w-6 text-gray-400" />
         <input
           className="flex-1 bg-transparent w-2 outline-none lg: w-none"
