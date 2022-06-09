@@ -37,7 +37,7 @@ function Header() {
         </Link>
       </div>
 
-      <div className="mx-7 hidden items-center xl:min-w-[300px] lg:flex">
+      <div className="mx-7 hidden items-center xl:min-w-[100px] lg:flex">
       <Link href="/">
         <HomeIcon className="h-5 w-5 " />
         </Link>
@@ -47,16 +47,16 @@ function Header() {
        
         {/* <ChevronUpIcon className="h-5 w-5 " /> */}
       </div>
-      <div className="mr-7 flex item-center xl:min-w-[300px]">
+      <div className="mr-4 flex item-center xl:min-w-[50px]">
       <Link href="javascript:window.location.href=window.location.href">
        <ChevronUpIcon className="h-5 w-5 " />
         </Link>
       </div>
 
-      <form className="flex flex-1 items-center  rounded-lg border border-gray-200 bg-gray-100 px-3 py-1 space-x-2 ">
+      <form className="flex flex-1 items-center   rounded-lg border border-gray-200 bg-gray-100 lg: space-x-2 px-3  py-1  ">
         <SearchIcon className="h-6 w-6 text-gray-400" />
         <input
-          className="flex-1 bg-transparent w-2 outline-none lg: w-none"
+          className="flex-1 bg-transparent w-2 outline-none "
           type="text"
           placeholder="Search PostIn"
         />
