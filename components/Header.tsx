@@ -23,14 +23,17 @@ import Avatar from './Avatar'
 function Header() {
   const { data: session } = useSession()
   return (
-    <div className=" sticky top-0 z-50  flex bg-white px-4 py-2 shadow-sm items-center">
+    <div className=" sticky top-0 z-50  flex bg-white px-1 py-2 shadow-sm items-center">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer ">
        <Link href="/">
-        <Image
+        
+         <Image 
           objectFit="contain"
           src="https://play-lh.googleusercontent.com/ItxDn_WNq3QPvuXS1jaXwujqvRobrH-hpEqbDy1iCVx0b5Z5dv9ADyfd83Dn6cDsNbE"
           layout="fill"
         />
+        
+        
         </Link>
       </div>
 
