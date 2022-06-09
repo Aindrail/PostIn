@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: any) {
     
     <SessionProvider session={session} refetchInterval={5*60}>
     <Toaster/>
-      <div className='h-screen overflow-y-scroll bg-slate-200'>
+      <div className='h-screen overflow-y-scroll  bg-slate-200'>
         <Header />
         {/* every single page will have the header */}
         <Component {...pageProps} />
